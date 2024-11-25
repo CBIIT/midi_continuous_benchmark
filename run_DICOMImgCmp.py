@@ -257,6 +257,8 @@ def compare_dicom_image(file_path1, file_path2, output_pdf):
 
         # If images are similar, skip processing and exit the function
     if mse == 0 and ssim_index == 1:
+        print(
+            f"\n\nThis is not structure change in the pixel image between before and after de-identification, or possible wrong mapping file")
         return
 
     error_message1 = "The format of this image cannot be displayed."
@@ -387,7 +389,7 @@ def main(config_file):
         # create a pdf file showing information of no much change in pixel image before and after de-identification
         c = canvas.Canvas(output_pdf, pagesize=letter)
         c.drawString(
-            100, 750, "This is not much change in the pixel image between before and after de-identification")
+            100, 750, "This is not structure change in the pixel image between before and after de-identification, or caused by possible incorrect mapping file.")
         c.save()
 
 # Stop the timer
